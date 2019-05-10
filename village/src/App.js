@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {Route} from 'react-router-dom';
+import {Route, NavLink} from 'react-router-dom';
 import './App.css';
 import SmurfForm from './components/SmurfForm';
 import Smurfs from './components/Smurfs';
@@ -28,6 +28,7 @@ componentDidMount() {
 }
 
 addNewSmurf = newSmurf => {
+  console.log(newSmurf)
   axios
     .post('http://localhost:3333/smurfs', newSmurf)
     .then(res => {
@@ -43,10 +44,17 @@ addNewSmurf = newSmurf => {
   render() {
     return (
       <div className="App">
+        <nav>
+          <div className="nav-links">
+            <NavLink exact to="/smurf-form">Add Smurf</NavLink>
+            <NavLink exact to="/">Home</NavLink>
+          </div>
+
+        </nav>
  
-        <Route path="/smurf-form" render={props => <SmurfForm {...props} addNewSmurf={this.addNewSmurf} />} />
+        <Route path="/smurf-form" render={props => <SmurfForm addNewSmurf={this.addNewSmurf} />} />
         
-        <Route exact path="/" render={() => <Smurfs smurfs={this.state.smurfs}/> } />
+        <Route exact path="/" render={() => (<Smurfs smurfs={this.state.smurfs}/> )} />
       </div>
       
 
