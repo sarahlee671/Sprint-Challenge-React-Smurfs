@@ -44,15 +44,18 @@ addNewSmurf = newSmurf => {
   render() {
     return (
       <div className="App">
-        <nav>
+        <nav className="header-container">
+          <h1 className="title">Smurf Village</h1>
+  
           <div className="nav-links">
-            <NavLink exact to="/smurf-form">Add Smurf</NavLink>
-            <NavLink exact to="/">Home</NavLink>
+            
+            <NavLink className="link" exact to="/smurf-form">Add Smurf</NavLink>
+            <NavLink className="link" exact to="/">Home</NavLink>
           </div>
 
         </nav>
  
-        <Route path="/smurf-form" render={props => <SmurfForm addNewSmurf={this.addNewSmurf} />} />
+        <Route path="/smurf-form" render={props => <SmurfForm addNewSmurf={this.addNewSmurf} {...props}/>} />
         
         <Route exact path="/" render={() => (<Smurfs smurfs={this.state.smurfs}/> )} />
       </div>

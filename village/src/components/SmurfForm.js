@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
+import '../App.css'
 
-class SmurfForm extends Component {
+class SmurfForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,16 +21,18 @@ class SmurfForm extends Component {
 
 
     this.setState({
-      name: '',
-      age: '',
-      height: ''
+      smurf: {
+        name: '',
+        age: '',
+        height: ''
+      }
     });
   }
 
   handleInputChange = e => {
     e.persist();
     let value= e.target.value
-    if (e.target.name==='age') {
+    if (e.target.name === 'age' || e.target.name === 'height') {
       value=parseInt(value, 10);
     }
     this.setState(prevState => ({
@@ -42,27 +45,27 @@ class SmurfForm extends Component {
 
   render() {
     return (
-      <div className="SmurfForm">
+      <div className="smurfForm">
         <form onSubmit={this.addSmurf}>
-          <input
+          <input className="form-input"
             onChange={this.handleInputChange}
             placeholder="name"
-            value={this.state.name}
+            value={this.state.smurf.name}
             name="name"
           />
-          <input
+          <input className="form-input"
             onChange={this.handleInputChange}
             placeholder="age"
-            value={this.state.age}
+            value={this.state.smurf.age}
             name="age"
           />
-          <input
+          <input className="form-input"
             onChange={this.handleInputChange}
             placeholder="height"
-            value={this.state.height}
+            value={this.state.smurf.height}
             name="height"
           />
-          <button type="submit">Add to the village</button>
+          <button className="submit-button" type="submit">Add to the village</button>
         </form>
       </div>
     );
