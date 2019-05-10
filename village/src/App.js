@@ -27,7 +27,7 @@ componentDidMount() {
     })
 }
 
-addSmurf = newSmurf => {
+addNewSmurf = newSmurf => {
   axios
     .post('http://localhost:3333/smurfs', newSmurf)
     .then(res => {
@@ -43,7 +43,7 @@ addSmurf = newSmurf => {
   render() {
     return (
       <div className="App">
-        <SmurfForm />
+        <SmurfForm addNewSmurf={this.addNewSmurf}/>
         <Smurfs smurfs={this.state.smurfs} />
       </div>
     );
