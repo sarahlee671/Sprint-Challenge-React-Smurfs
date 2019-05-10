@@ -1,3 +1,86 @@
 .App {
   text-align: center;
+  max-width: 1100px;
+}
+
+.header-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 35px;
+  margin-left: 20px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px blue;
+}
+
+.nav-links {
+  margin: 30px;
+}
+
+.link {
+  margin: 10px;
+  background-color: blue;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  
+}
+
+.link:hover {
+  cursor: pointer;
+} 
+.smurfs {
+  width: 1000px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+
+.smurf-card {
+
+  width: 200px;
+  height: 0 auto;
+  
+  margin: 15px;
+  padding: 10px;
+  background: blue;
+  color: white;
+  text-shadow: 2px 2px 4px black;
+  box-shadow: 5px 10px 8px black;
+}
+
+
+.smurfForm {
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 300px; 
+  margin-left: 350px;
+  margin-top: 30px;
+
+  
+ 
+}
+.form-input {
+ 
+  width: 200px;
+  height: 30px;
+  font-size: 25px;
+  border: 2px solid gray;
+  margin: 5px;
+  box-shadow: 5px 5px 4px black;
+}
+
+.submit-button {
+  margin: 10px;
+  background-color: blue;
+  color: white;
+  font-size: 15px;
+  padding: 10px;
+
 }

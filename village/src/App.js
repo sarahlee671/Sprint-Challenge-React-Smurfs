@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
-
+import React from 'react';
+import axios from 'axios';
+import {Route, NavLink} from 'react-router-dom';
 import './App.css';
 import SmurfForm from './components/SmurfForm';
 import Smurfs from './components/Smurfs';
 
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,12 +15,52 @@ class App extends Component {
   // add any needed code to ensure that the smurfs collection exists on state and it has data coming from the server
   // Notice what your map function is looping over and returning inside of Smurfs.
   // You'll need to make sure you have the right properties on state and pass them down to props.
+componentDidMount() {
+  axios
+    .get('http://localhost:3333/smurfs')
+    .then(res => {
+      this.setState({smurfs: res.data});
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+}
+
+addNewSmurf = newSmurf => {
+  console.log(newSmurf)
+  axios
+    .post('http://localhost:3333/smurfs', newSmurf)
+    .then(res => {
+      this.setState({ smurfs: res.data });
+      console.log(res);
+      this.props.history.push('/')
+    })
+    .catch(err => {
+      console.log(err);
+    })
+}
+
   render() {
     return (
       <div className="App">
-        <SmurfForm />
-        <Smurfs smurfs={this.state.smurfs} />
+        <nav className="header-container">
+          <h1 className="title">Smurf Village</h1>
+  
+          <div className="nav-links">
+            
+            <NavLink className="link" exact to="/smurf-form">Add Smurf</NavLink>
+            <NavLink className="link" exact to="/">Home</NavLink>
+          </div>
+
+        </nav>
+ 
+        <Route path="/smurf-form" render={props => <SmurfForm addNewSmurf={this.addNewSmurf} {...props}/>} />
+        
+        <Route exact path="/" render={() => (<Smurfs smurfs={this.state.smurfs}/> )} />
       </div>
+      
+
     );
   }
 }
